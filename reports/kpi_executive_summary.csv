@@ -1,0 +1,2 @@
+services_total,services_completed,cancel_rate_%,on_time_rate_%,avg_delay_min,p95_delay_min,avg_occupancy,avg_margin,total_margin
+12000,11814,1.55,33.16,11.83,36.14,0.577,27141.46,320649262.45
