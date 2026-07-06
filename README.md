@@ -4,7 +4,24 @@
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-lightgrey)
 ![Operations](https://img.shields.io/badge/Use%20Case-Operations%20Analytics-green)
 ![Control Tower](https://img.shields.io/badge/Control%20Tower-Sem%C3%A1foro%20Operativo-orange)
+![Dashboard](https://img.shields.io/badge/Dashboard-GitHub%20Pages-brightgreen)
 ![Status](https://img.shields.io/badge/Status-Portfolio%20Project-success)
+
+## Dashboard interactivo
+
+El proyecto incluye un dashboard HTML interactivo publicado con GitHub Pages:
+
+[**Abrir dashboard Control Operativo Ferries**](https://amlacasta.github.io/control-operativo-eficiencia/dashboard/dashboard_control_operativo_ferries.html)
+
+El dashboard permite cargar el CSV operativo del proyecto y explorar KPIs, puntualidad, retrasos, rutas críticas, causas de disrupción, clima, hotspots ruta × hora y semáforo operativo.
+
+Archivo recomendado para cargar:
+
+```text
+ferry_operations_raw.csv
+```
+
+---
 
 ## 1. Resumen ejecutivo
 
@@ -149,6 +166,9 @@ control-operativo-eficiencia/
 │   ├── figures/
 │   └── executive_summary.md
 │
+├── dashboard/
+│   └── dashboard_control_operativo_ferries.html
+│
 ├── src/
 ├── README.md
 └── .gitignore
@@ -161,7 +181,7 @@ control-operativo-eficiencia/
 El proyecto sigue un flujo analítico completo:
 
 ```text
-datos sintéticos → KPIs → diagnóstico → semáforo → recomendaciones
+datos sintéticos → KPIs → diagnóstico → semáforo → recomendaciones → dashboard
 ```
 
 | Notebook | Objetivo | Output principal |
@@ -323,9 +343,37 @@ La combinación de acciones sobre **WEATHER** y **TECHNICAL** ofrece el mayor im
 
 ---
 
-## 16. Recomendaciones operativas
+## 16. Dashboard HTML interactivo
 
-### 16.1 Plan de contingencia por meteorología
+El dashboard está desarrollado en HTML con **Plotly.js** y está publicado en GitHub Pages.
+
+[**Abrir dashboard Control Operativo Ferries**](https://amlacasta.github.io/control-operativo-eficiencia/dashboard/dashboard_control_operativo_ferries.html)
+
+Funcionalidades principales:
+
+- carga manual de CSV,
+- filtros por ruta,
+- filtros por clima,
+- filtros por causa de disrupción,
+- filtros por rango de fechas,
+- selector de umbral OTR,
+- KPIs principales,
+- delay medio por ruta,
+- Pareto de causas,
+- evolución diaria de delay y OTR,
+- semáforo operativo de rutas,
+- interacción clima × causa,
+- heatmap ruta × hora,
+- top hotspots operativos,
+- exportación del CSV filtrado.
+
+El dashboard permite convertir el análisis del notebook en una herramienta exploratoria de lectura ejecutiva.
+
+---
+
+## 17. Recomendaciones operativas
+
+### 17.1 Plan de contingencia por meteorología
 
 Definir umbrales operativos para escenarios `WINDY`, `ROUGH` y `STORM`, con acciones como:
 
@@ -337,13 +385,13 @@ Definir umbrales operativos para escenarios `WINDY`, `ROUGH` y `STORM`, con acci
 
 Justificación: **WEATHER** es la principal fuente de retraso agregado.
 
-### 16.2 Fiabilidad técnica
+### 17.2 Fiabilidad técnica
 
 Reforzar mantenimiento preventivo y checks pre-salida en rutas con peor desempeño, especialmente cuando se esperan condiciones `ROUGH` o `STORM`.
 
 Justificación: **TECHNICAL** tiene alto impacto y se amplifica con mal clima.
 
-### 16.3 Gestión de congestión portuaria
+### 17.3 Gestión de congestión portuaria
 
 Ajustar buffers y ventanas de atraque en franjas problemáticas.
 
@@ -354,7 +402,7 @@ Acciones posibles:
 - mejora de procesos de embarque,
 - priorización de ventanas críticas.
 
-### 16.4 Control Tower semanal
+### 17.4 Control Tower semanal
 
 Revisar semanalmente:
 
@@ -367,7 +415,7 @@ Revisar semanalmente:
 
 ---
 
-## 17. Outputs del proyecto
+## 18. Outputs del proyecto
 
 | Output | Descripción |
 |---|---|
@@ -375,13 +423,14 @@ Revisar semanalmente:
 | `reports/figures/pareto_delay.png` | Pareto de causas de retraso |
 | `reports/figures/heatmap_route_hour_delay.png` | Heatmap ruta × hora |
 | `reports/figures/boxplot_delay_by_weather.png` | Distribución de retrasos por clima |
+| `dashboard/dashboard_control_operativo_ferries.html` | Dashboard interactivo HTML |
 | `reports/*.csv` | Tablas de KPIs, rutas, hotspots y semáforo |
 
 ---
 
-## 18. Cómo reproducir el proyecto
+## 19. Cómo reproducir el proyecto
 
-### 18.1 Requisitos
+### 19.1 Requisitos
 
 Dependencias principales:
 
@@ -393,7 +442,7 @@ seaborn
 scikit-learn
 ```
 
-### 18.2 Orden de ejecución
+### 19.2 Orden de ejecución
 
 Ejecutar los notebooks en este orden:
 
@@ -403,7 +452,7 @@ Ejecutar los notebooks en este orden:
 03_diagnostics.ipynb
 ```
 
-### 18.3 Flujo recomendado en Google Colab
+### 19.3 Flujo recomendado en Google Colab
 
 1. Abrir `notebooks/01_generate_dataset.ipynb` y ejecutarlo.
 2. Generar el dataset raw sintético.
@@ -411,10 +460,11 @@ Ejecutar los notebooks en este orden:
 4. Revisar KPIs globales, rankings y semáforo.
 5. Ejecutar `notebooks/03_diagnostics.ipynb`.
 6. Revisar Pareto, hotspots, figuras y recomendaciones.
+7. Abrir el dashboard HTML y cargar el CSV operativo generado.
 
 ---
 
-## 19. Impacto de negocio
+## 20. Impacto de negocio
 
 Este proyecto ayuda a convertir datos operativos en decisiones accionables.
 
@@ -440,7 +490,7 @@ Permite conectar operación, ocupación y margen para tomar decisiones con visi�
 
 ---
 
-## 20. Limitaciones
+## 21. Limitaciones
 
 El proyecto utiliza datos sintéticos, por lo que sus resultados no deben interpretarse como resultados reales de ninguna compañía.
 
@@ -457,7 +507,7 @@ Limitaciones principales:
 
 ---
 
-## 21. Próximos pasos
+## 22. Próximos pasos
 
 El sistema podría evolucionar incorporando:
 
@@ -474,12 +524,12 @@ El sistema podría evolucionar incorporando:
 
 ---
 
-## 22. Conclusión
+## 23. Conclusión
 
 Este proyecto muestra un flujo completo de analítica aplicada a operaciones de transporte marítimo:
 
 ```text
-datos → KPIs → diagnóstico → hotspots → semáforo → recomendaciones
+datos → KPIs → diagnóstico → hotspots → semáforo → recomendaciones → dashboard
 ```
 
 El valor principal no está únicamente en calcular indicadores, sino en convertirlos en una lógica de priorización operativa.
